@@ -1,4 +1,12 @@
 import os
+from connector import database
+from createtable import film, penonton,pegawai,Pesan
+db = database()
+db.connect()
+db.createTbl(film)
+db.createTbl(penonton)
+db.createTbl(pegawai)
+db.createTbl(Pesan)
 
 while True :
     os.system('cls')
