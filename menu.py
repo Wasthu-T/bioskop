@@ -1,59 +1,184 @@
 import os
 from connector import database
-from createtable import film, penonton,pegawai,Pesan
+from createtable import film, penonton,pegawai,pesan,kursi
+from query import Film, Penonton, Pegawai, Pesan, Kursi
 db = database()
 db.connect()
 db.createTbl(film)
 db.createTbl(penonton)
 db.createTbl(pegawai)
-db.createTbl(Pesan)
+db.createTbl(pesan)
+db.createTbl(kursi)
 
 while True :
     os.system('cls')
-    print("=== Menu Bioskop ===")
-    print("1. Penonton")
-    print("2. Pegawai")
-    print("0. Keluar")
+    print("="*22)
+    print("=== Selamat Datang ===")
+    print("=== Di Atrium XXII ===")
+    print("="*22)
+    print("\n==== Menu Bioskop ====")
+    print("===[1] Penonton\t   ===")
+    print("===[2] Pegawai\t   ===")
+    print("===[3] Film\t   ===")
+    print("===[4] Kursi\t   ===")
+    print("===[5] Pesan\t   ===")
+    print("===[0] Keluar\t   ===")
+    print("="*22)
     pilih = int(input("Pilih Menu : "))
     if pilih == 1 :
-        print("=== Menu Penonton ===")
-        print("1. Daftar film")
-        print("2. Pesan tiket")
+        print("\n\t===== Menu Penonton =====")
+        print("\t===[1] Insert Penonton ==")
+        print("\t===[2] Update Penonton ==")
+        print("\t===[3] Delete Penonton ==")
+        print("\t===[4] Read Penonton   ==")
+        print("\t=========================")
         pilih = int(input("Pilih Menu : "))
         if pilih == 1 :
-            # Judul
-            # Durasi
-            # Jenis 
-            # Produser
-            # Sutradara
-            # Penulis
-            # Produksi
-            # Casts
-            pass
+            pen = Penonton(db)
+            pen.insert_penonton()
+            print("=== Anda Berhasil Menambahkan Data Penonton ===")
         elif pilih == 2 :
-            # Judul
-            # Kursi
-            pass
+            pen = Penonton(db)
+            pen.update_penonton()
+            print("=== Anda Berhasil Meng-update Data Penonton ===")
+        elif pilih == 3 :
+            pen = Penonton(db)
+            pen.delete_penonton()
+            print("=== Anda Berhasil Menghapus Data Penonton ===")
+        elif pilih == 4 :
+            pen = Penonton(db)
+            pen.read_penonton()
+            print("=== Anda Berhasil Menampilkan Data Penonton ===")
         else :
-            print("Pilihan tidak tersedia")
-            print("Kembali ke menu utama")
-            os.system('pause')
+            print("=== Pilihan tidak tersedia ===")
+            print("=== Kembali ke menu utama ===")
+        os.system('pause')
     elif pilih == 2 :
-        print("=== Menu Pegawai ===")
-        print("1. Film")
-        print("2. Kursi")
+        print("\n\t===== Menu Pegawai =====")
+        print("\t===[1] Insert Pegawai ==")
+        print("\t===[2] Update Pegawai ==")
+        print("\t===[3] Delete Pegawai ==")
+        print("\t===[4] Read Pegawai   ==")
+        print("\t========================")
         pilih = int(input("Pilih Menu : "))
         if pilih == 1 :
-            pass
+            pgw = Pegawai(db)
+            pgw.insert_pegawai()
+            print("=== Anda Berhasil Menambahkan Data Pegawai ===")
         elif pilih == 2 :
-            pass
+            pgw = Pegawai(db)
+            pgw.update_pegawai()
+            print("=== Anda Berhasil Meng-update Data Pegawai ===")
+        elif pilih == 3 :
+            pgw = Pegawai(db)
+            pgw.delete_pegawai()
+            print("=== Anda Berhasil Menghapus Data Pegawai ===")
+        elif pilih == 4 :
+            pgw = Pegawai(db)
+            pgw.read_pegawai()
+            print("=== Anda Berhasil Menampilkan Data Pegawai ===")
         else :
-            print("Pilihan tidak tersedia")
-            print("Kembali ke menu utama")
+            print("=== Pilihan tidak tersedia ===")
+            print("=== Kembali ke menu utama ===")
+        os.system('pause')
+    elif pilih == 3 :
+        print("\n\t===== Menu Film =====")
+        print("\t===[1] Insert Film ==")
+        print("\t===[2] Update Film ==")
+        print("\t===[3] Delete Film ==")
+        print("\t===[4] Read Film   ==")
+        print("\t=====================")
+        pilih = int(input("Pilih Menu : "))
+        if pilih == 1 :
+            f = Film(db)
+            f.insert_film()
+            print("=== Anda Berhasil Menambahkan Data Film ===")
+        elif pilih == 2 :
+            f = Film(db)
+            f.update_film()
+            print("=== Anda Berhasil Meng-update Data Film ===")
+        elif pilih == 3 :
+            f = Film(db)
+            f.delete_film()
+            print("=== Anda Berhasil Menghapus Data Film ===")
+        elif pilih == 4 :
+            f = Film(db)
+            f.read_film()
+            print("=== Anda Berhasil Menampilkan Data Film ===")
+        else :
+            print("=== Pilihan tidak tersedia ===")
+            print("=== Kembali ke menu utama ===")
+        os.system('pause')
+    elif pilih == 4 :
+        print("\n\t===== Menu Kursi =====")
+        print("\t===[1] Insert Kursi ==")
+        print("\t===[2] Update Kursi ==")
+        print("\t===[3] Delete Kursi ==")
+        print("\t===[4] Read Kursi   ==")
+        print("\t=====================")
+        pilih = int(input("Pilih Menu : "))
+        if pilih == 1 :
+            kur = Kursi(db)
+            kur.insert_kursi()
+            print("=== Anda Berhasil Menambahkan Data Kursi ===")
+        elif pilih == 2 :
+            kur = Kursi(db)
+            kur.update_kursi()
+            print("=== Anda Berhasil Meng-update Data Kursi ===")
+        elif pilih == 3 :
+            kur = Kursi(db)
+            kur.delete_kursi()
+            print("=== Anda Berhasil Menghapus Data Kursi ===")
+        elif pilih == 4 :
+            kur = Kursi(db)
+            kur.read_kursi()
+            print("=== Anda Berhasil Menampilkan Data Kursi ===")
+        else :
+            print("=== Pilihan tidak tersedia ===")
+            print("=== Kembali ke menu utama ===")
+        os.system('pause')
+    elif pilih == 5 :
+        print("\n\t===== Menu Pesan =====")
+        print("\t===[1] Daftar Film  ==")
+        print("\t===[2] Daftar Kursi ==")
+        print("\t===[3] Beli Tiket   ==")
+        print("\t======================")
+        pilih = int(input("Pilih Menu : "))
+        if pilih == 1 :
+            f = Film(db)
+            f.read_film()
+            print("=== Anda Berhasil Menambahkan Data Film ===")
+        elif pilih == 2 :
+            f = Film(db)
+            f.update_film()
+            print("=== Anda Berhasil Meng-update Data Film ===")
+        elif pilih == 3 :
+            print("\n\t===== Menu Tiket =====")
+            print("\t===[1] Pesan Tiket  ==")
+            print("\t===[2] Edit Tiket   ==")
+            print("\t===[3] Hapus Tiket  ==")
+            print("\t===[4] Lihat Tiket  ==")
+            print("\t=====================")
+            pilih = int(input("Pilih Menu : "))
+            if pilih == 1 :
+                pes = Pesan(db)
+                pes.insert_pesan()
+            elif pilih == 2 :
+                pes = Pesan(db)
+                pes.update_pesan()
+            elif pilih == 3 :
+                pes = Pesan(db)
+                pes.delete_pesan()
+            elif pilih == 4 :
+                pes = Pesan(db)
+                pes.read_pesan()
+            else :
+                print("=== Pilihan tidak tersedia ===")
+                print("=== Kembali ke menu utama ===")
             os.system('pause')
     elif pilih == 0 :
-        print("Keluar")
+        print("\t=== Terimakasih ===")
+        print("=== Jangan Lupa Datang Kembali ===")
     else :
         print("Pilihan tidak tersedia")
         os.system('pause')
-    

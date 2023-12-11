@@ -1,4 +1,3 @@
-
 penonton ='''CREATE TABLE IF NOT EXISTS Penonton(
    Id_penonton int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
    Nama varchar(200) NOT NULL,
@@ -25,18 +24,27 @@ film = '''CREATE TABLE IF NOT EXISTS Film(
    Produser varchar(200) ,
    Sutradara varchar(200),
    Penulis varchar(200),
-    Produksi varchar(200),
-    Casts varchar(200)
+   Produksi varchar(200),
+   Casts varchar(200)
     );
 '''
 
-Pesan = '''CREATE TABLE IF NOT EXISTS Pesan(
+pesan = '''CREATE TABLE IF NOT EXISTS Pesan(
    Id_pesan int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
    Judul varchar(200) ,
-   Kursi varchar(200) ,
-   hari varchar(20) ,
-   jam datetime,
-   tgl date,
+   Nomor_kursi varchar(200) ,
+   Jenis_kursi ENUM('Reguler', 'VIP', 'Premium', 'Khusus') NOT NULL,
+   Hari varchar(20) ,
+   Jam time,
+   Tgl date,
    Harga varchar(200)
     );
-    '''
+'''
+
+kursi = '''CREATE TABLE IF NOT EXISTS Kursi(
+   Id_kursi int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+   Nomor_kursi varchar(200) NOT NULL,
+   Jenis_kursi ENUM('Reguler', 'VIP', 'Premium', 'Khusus') NOT NULL,
+   Id_Ruangan varchar(200) NOT NULL UNIQUE
+    );
+'''
