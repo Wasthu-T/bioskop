@@ -33,20 +33,17 @@ while True :
         print("\t===[4] Read Penonton   ==")
         print("\t=========================")
         pilih = int(input("Pilih Menu : "))
+        pen = Penonton(db)
         if pilih == 1 :
-            pen = Penonton(db)
             pen.insert_penonton()
             print("=== Anda Berhasil Menambahkan Data Penonton ===")
         elif pilih == 2 :
-            pen = Penonton(db)
             pen.update_penonton()
             print("=== Anda Berhasil Meng-update Data Penonton ===")
         elif pilih == 3 :
-            pen = Penonton(db)
             pen.delete_penonton()
             print("=== Anda Berhasil Menghapus Data Penonton ===")
         elif pilih == 4 :
-            pen = Penonton(db)
             pen.read_penonton()
             print("=== Anda Berhasil Menampilkan Data Penonton ===")
         else :
@@ -61,20 +58,17 @@ while True :
         print("\t===[4] Read Pegawai   ==")
         print("\t========================")
         pilih = int(input("Pilih Menu : "))
+        pgw = Pegawai(db)
         if pilih == 1 :
-            pgw = Pegawai(db)
             pgw.insert_pegawai()
             print("=== Anda Berhasil Menambahkan Data Pegawai ===")
         elif pilih == 2 :
-            pgw = Pegawai(db)
             pgw.update_pegawai()
             print("=== Anda Berhasil Meng-update Data Pegawai ===")
         elif pilih == 3 :
-            pgw = Pegawai(db)
             pgw.delete_pegawai()
             print("=== Anda Berhasil Menghapus Data Pegawai ===")
         elif pilih == 4 :
-            pgw = Pegawai(db)
             pgw.read_pegawai()
             print("=== Anda Berhasil Menampilkan Data Pegawai ===")
         else :
@@ -89,20 +83,17 @@ while True :
         print("\t===[4] Read Film   ==")
         print("\t=====================")
         pilih = int(input("Pilih Menu : "))
+        f = Film(db)
         if pilih == 1 :
-            f = Film(db)
             f.insert_film()
             print("=== Anda Berhasil Menambahkan Data Film ===")
         elif pilih == 2 :
-            f = Film(db)
             f.update_film()
             print("=== Anda Berhasil Meng-update Data Film ===")
         elif pilih == 3 :
-            f = Film(db)
             f.delete_film()
             print("=== Anda Berhasil Menghapus Data Film ===")
         elif pilih == 4 :
-            f = Film(db)
             f.read_film()
             print("=== Anda Berhasil Menampilkan Data Film ===")
         else :
@@ -117,20 +108,17 @@ while True :
         print("\t===[4] Read Kursi   ==")
         print("\t=====================")
         pilih = int(input("Pilih Menu : "))
+        kur = Kursi(db)
         if pilih == 1 :
-            kur = Kursi(db)
             kur.insert_kursi()
             print("=== Anda Berhasil Menambahkan Data Kursi ===")
         elif pilih == 2 :
-            kur = Kursi(db)
             kur.update_kursi()
             print("=== Anda Berhasil Meng-update Data Kursi ===")
         elif pilih == 3 :
-            kur = Kursi(db)
             kur.delete_kursi()
             print("=== Anda Berhasil Menghapus Data Kursi ===")
         elif pilih == 4 :
-            kur = Kursi(db)
             kur.read_kursi()
             print("=== Anda Berhasil Menampilkan Data Kursi ===")
         else :
@@ -144,12 +132,11 @@ while True :
         print("\t===[3] Beli Tiket   ==")
         print("\t======================")
         pilih = int(input("Pilih Menu : "))
+        f = Film(db)
         if pilih == 1 :
-            f = Film(db)
             f.read_film()
             print("=== Anda Berhasil Menambahkan Data Film ===")
         elif pilih == 2 :
-            f = Film(db)
             f.update_film()
             print("=== Anda Berhasil Meng-update Data Film ===")
         elif pilih == 3 :
@@ -160,17 +147,14 @@ while True :
             print("\t===[4] Lihat Tiket  ==")
             print("\t=====================")
             pilih = int(input("Pilih Menu : "))
+            pes = Pesan(db)
             if pilih == 1 :
-                pes = Pesan(db)
                 pes.insert_pesan()
             elif pilih == 2 :
-                pes = Pesan(db)
                 pes.update_pesan()
             elif pilih == 3 :
-                pes = Pesan(db)
                 pes.delete_pesan()
             elif pilih == 4 :
-                pes = Pesan(db)
                 pes.read_pesan()
             else :
                 print("=== Pilihan tidak tersedia ===")
