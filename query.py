@@ -136,6 +136,7 @@ class Penonton :
 
 
     def edit_penonton(self, result, Id_penonton) :
+        # get data dari parameter result
         Nama = result[0][1]
         Email = result[0][2]
         Nomor = result[0][3]
@@ -172,6 +173,7 @@ class Penonton :
         query = """SELECT * FROM penonton WHERE Id_penonton = %s"""
         data = (Id_penonton,)
         self.db.selectValuepretty(query, data)
+        # result menggunakan fetchall
         result = self.db.selectValue(query, data)
 
         test = str(input("Apa data ingin diupdate (y/n)? "))
@@ -445,7 +447,7 @@ class Tiket :
         self.db.selectValuepretty(query, data=None)
         print("=== Anda Berhasil Menampilkan Data Tiket ===")
 
-# tabel pesan 90%
+# tabel pesan done
 class Pesan :
     def __init__(self, db):
         self.db = db
@@ -477,6 +479,7 @@ class Pesan :
         data2 = (sisa_stok_kursi, id_tiket)
         self.db.insertValue(update_stok,data2)
         print("=== Anda Berhasil Memesan Tiket ===")
+        
     def edit_pesan(self, result, id_pesan) :
         id_tiket = result[0][1]
         id_penonton = result[0][2]
@@ -514,7 +517,7 @@ class Pesan :
 
         test = str(input("Apa data ingin diupdate (y/n)? "))
         if test.lower() == 'y' :
-            self.edit_tiket(result, Id_pesan)
+            self.edit_pesan(result, Id_pesan)
             print("=== Anda Berhasil Meng-update Data Pesan ===")
         else :
             print("=== Anda Gagal Meng-update Data Pesan ===")
@@ -549,16 +552,11 @@ class Bukti_pesan:
         query = """SELECT * FROM pesan WHERE Id_pesan=%s"""
         data = int(input("Masukan Id Pesan Anda\t\t: "))
         result = self.db.selectValue(query, (data,)) 
-        print(1)
-        print(result)
         return result
     
     def get_infotiket(self, data) :
         query = """SELECT * FROM tiket WHERE id_tiket=%s"""
         result = self.db.selectValue(query, (data,)) 
-        print(2)
-        print(result)
-
         return result    
     
     def get_judulfilm(self,data) :
