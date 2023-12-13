@@ -406,7 +406,6 @@ class Tiket :
                 continue
             else :
                 break
-        # quary = """INSERT INTO tiket(Id_film, Jam_tayang, Hari,Tanggal, Harga, Stok_kursi) VALUES (%s, %s, %s, %s,%s,%s)"""
         query = """UPDATE tiket SET `Id_film`= %s, `Jam_tayang`= %s, `Hari`= %s, `Tanggal`= %s, `Harga`=%s, `Stok_kursi`=%s  WHERE Id_tiket = %s"""
         data = (Id_film, Jam_tayang, hari,Tanggal,harga,stok,Id_tiket)
         self.db.insertValue(query, data)
@@ -549,15 +548,21 @@ class Bukti_pesan:
         self.db = db
 
     def get_infopesan(self) :
-        print("=== Read Pesan ===")
         query = """SELECT * FROM pesan WHERE Id_pesan=%s"""
         data = int(input("Masukan Id Pesan Anda\t\t: "))
         result = self.db.selectValue(query, (data,)) 
+        print(1)
+        print(result)
         return result
+    
     def get_infotiket(self, data) :
         query = """SELECT * FROM tiket WHERE id_tiket=%s"""
         result = self.db.selectValue(query, (data,)) 
+        print(2)
+        print(result)
+
         return result    
+    
     def get_judulfilm(self,data) :
         query = """SELECT * FROM film WHERE id_film=%s"""
         result = self.db.selectValue(query, (data,)) 
@@ -567,9 +572,10 @@ class Bukti_pesan:
         print("=== Input Kursi ===")
         pesan = self.get_infopesan()
         id_pesan = pesan[0][0]
+        id_tik = pesan[0][1]
         total_kursi = pesan[0][3]
 
-        tiket = self.get_infotiket(id_pesan)
+        tiket = self.get_infotiket(id_tik)
         id_tiket = tiket[0][1]
         Jam_tayang = tiket[0][2]
         Hari = tiket[0][3]
@@ -584,50 +590,37 @@ class Bukti_pesan:
             self.db.insertValue(query,data)
             i += 1
 
-    # def update_buktipesan(self):
-    #     print("=== Update Kursi ===")
-    #     Id_kursi = int(input("Masukkan ID Kursi yang akan diupdate: "))
-
-    #     Nomor_kursi = str(input("Masukan Nomor Kursi\t\t: "))
-    #     Jenis_kursi = str(input("Masukan Jenis Kursi\t\t: "))
-    #     Id_Ruangan = str(input("Masukan ID Ruangan\t\t: "))
-
-    #     query = """UPDATE kursi SET `Nomor_kursi`= %s, `Jenis_kursi`= %s, `Id_Ruangan`= %s WHERE `Id_kursi` = %s"""
-    #     data = (Nomor_kursi, Jenis_kursi, Id_Ruangan, Id_kursi)
-
-    #     self.db.insertValue(query,data)
-
     def delete_buktipesan(self):
-        print("=== Delete Kursi ===")
-        Id_kursi = int(input("Masukkan ID Kursi yang akan dihapus: "))
+        print("=== Delete Bukti Pesan ===")
+        Id_pesan = int(input("Masukkan ID Id_pesan yang akan dihapus: "))
 
-        query = """DELETE FROM kursi WHERE Id_kursi = %s """
-        data = (Id_kursi,)
-        
+        query = """DELETE FROM bukti_pesan WHERE Id_pesan = %s """
+        data = (Id_pesan,)
         self.db.insertValue(query, data)
+        print("=== Berhasil Menghapus Data Bukti Pesan")
 
     def read_buktipesan(self):
         while True :
-            print("=== Read Kursi ===")
+            print("=== Read Bukti Pesan ===")
             print("=== 1. Lihat semua buktipesan ===")
             print("=== 2. Lihat bedasarkan Id_pesan")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
                 query = """SELECT * FROM bukti_pesan"""
-                result = self.db.selectValuepretty(query, data=None)
+                self.db.selectValuepretty(query, data=None)
                 print("=== Berhasil Menampilkan Data Bukti Pesan")
 
             elif pilih == 2 :
-                Id_pesan = int(input("Masukkan ID Kursi yang akan dilihat: "))
+                Id_pesan = int(input("Masukkan ID pesan yang akan dilihat: "))
                 query = """SELECT * FROM bukti_pesan WHERE Id_pesan = %s"""
                 data = (Id_pesan,)
-                result = self.db.selectValuepretty(query, data)
+                self.db.selectValuepretty(query, data)
                 print("=== Berhasil Menampilkan Data Bukti Pesan")
 
             else :
                 print("Pilihan tidak tersedia")
 
-            lihat = int(input("Apa ingin melihat data lagi (y/n)? "))
+            lihat = str(input("Apa ingin melihat data lagi (y/n)? "))
             if lihat.lower() == 'y' :
                 continue
             else :

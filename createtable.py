@@ -1,5 +1,3 @@
-from connector import database
-
 penonton ='''CREATE TABLE IF NOT EXISTS Penonton(
    Id_penonton int(10) NOT NULL PRIMARY KEY AUTO_INCREMENT,
    Nama varchar(200) NOT NULL,
@@ -70,10 +68,10 @@ bukti = '''CREATE TABLE IF NOT EXISTS Bukti_pesan(
 
 
 def created_table(db) :
-    db.createTbl(film)
-    db.createTbl(penonton)
-    db.createTbl(pegawai)
-    db.createTbl(tiket)
-    db.createTbl(pesan)
-    db.createTbl(bukti)
+    db.create(film)
+    db.create(penonton)
+    db.create(pegawai)
+    db.create(tiket)
+    db.create(pesan)
+    db.create(bukti)
     print("Tabel berhasil dibuat")

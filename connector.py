@@ -11,7 +11,7 @@ class database:
         )
         self.cur = self.db.cursor()
 
-    def createTbl(self, query):
+    def create(self, query):
         try:
             self.cur.execute(query)
             self.db.commit()
