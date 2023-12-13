@@ -49,9 +49,7 @@ while True :
                 pen.update_penonton()
             elif pilih == 3 :
                 pen.delete_penonton()
-            elif pilih == 4 :
-                pen.read_penonton()
-                print("=== Anda Berhasil Menampilkan Data Penonton ===")
+            
             else :
                 print("=== Pilihan tidak tersedia ===")
                 print("=== Kembali ke menu utama ===")
@@ -99,6 +97,7 @@ while True :
             print("\t===[2] Update Pegawai ==")
             print("\t===[3] Delete Pegawai ==")
             print("\t===[4] Read Pegawai   ==")
+            print("\t===[5] Read Penonton   ==")
             print("\t========================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
@@ -110,6 +109,9 @@ while True :
             elif pilih == 4 :
                 pgw.read_pegawai()
                 print("=== Anda Berhasil Menampilkan Data Pegawai ===")
+            elif pilih == 5 :
+                pen.read_penonton()
+                print("=== Anda Berhasil Menampilkan Data Penonton ===")
             else :
                 print("=== Pilihan tidak tersedia ===")
                 print("=== Kembali ke menu utama ===")
