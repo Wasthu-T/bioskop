@@ -4,7 +4,6 @@ from datetime import datetime
 import locale
 # set bahasa waktu lokal indonesia
 locale.setlocale(locale.LC_TIME, 'id_ID')
-
 # tabel film done
 class Film:
     def __init__(self, db):
@@ -181,19 +180,18 @@ class Penonton :
             print("=== Anda Berhasil Meng-update Data Penonton ===")
         else :
             print("=== Anda Gagal Meng-update Data Penonton ===")
-        self.db.insertValue(query, data)
+        self.db.selectValuepretty(query, data)
 
     def delete_penonton(self):
         print("=== Delete Penonton ===")
         Id_penonton = int(input("Masukkan ID Penonton yang akan dihapus: "))
-        query = """SELECT FROM penonton WHERE Id_penonton = %s """
+        query = """SELECT * FROM penonton WHERE Id_penonton = %s"""
         data = (Id_penonton,)
         self.db.selectValuepretty(query, data)
         test = str(input("Apa data ingin dihapus (y/n)? "))
         if test.lower() == 'y' :
-            query = """DELETE FROM penonton WHERE Id_penonton = %s """
-            data = (Id_penonton,)
-            self.db.insertValue(query, data)
+            query2 = """DELETE FROM penonton WHERE Id_penonton = %s """
+            self.db.insertValue(query2, data)
             print("=== Anda Berhasil Menghapus Data penonton ===")
             
         else :
@@ -540,7 +538,7 @@ class Pesan :
     def read_pesan(self):
         print("=== Read Pesan ===")
         query = """SELECT * FROM pesan"""
-        result = self.db.selectValuepretty(query, data=None)
+        self.db.selectValuepretty(query, data=None)
 
 # tabel struk
 class Bukti_pesan:
