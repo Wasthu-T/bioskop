@@ -1,7 +1,7 @@
 import os
 from connector import database
 from createtable import created_table
-from query import Film, Penonton, Pegawai, Pesan, Tiket
+from query import Film, Penonton, Pegawai, Pesan, Tiket, Bukti_pesan
 db = database()
 db.connect()
 created_table(db)
@@ -112,14 +112,13 @@ while True :
 
     elif pilih == 5 :
         print("\n\t===== Menu Pesan =====")
-        print("\t===[1] Daftar Tiket  ==")
+        print("\t===[1] Daftar Tiket ==")
         print("\t===[2] Beli Tiket   ==")
         print("\t======================")
         pilih = int(input("Pilih Menu : "))
         tik = Tiket(db)
         if pilih == 1 :
             tik.read_tiket()
-            print("=== Anda Berhasil Melihat Data Tiket ===")
         elif pilih == 2 :
             print("\n\t===== Beli Tiket =====")
             print("\t===[1] Pesan Tiket  ==")
@@ -143,22 +142,16 @@ while True :
         os.system('pause')
 
     elif pilih == 6 :
-        print("\n\t===== Menu Tiket =====")
-        print("\t===[1] Insert Tiket ==")
-        print("\t===[2] Update Tiket ==")
-        print("\t===[3] Delete Tiket ==")
-        print("\t===[4] Read Tiket   ==")
+        print("\n\t===== Menu Struck =====")
+        print("\t===[1] Insert Struck ==")
+        print("\t===[2] Read Struck   ==")
         print("\t=====================")
         pilih = int(input("Pilih Menu : "))
-        pes = Pesan(db)
+        Bp = Bukti_pesan(db)
         if pilih == 1 :
-            pes.insert_tiket()
+            Bp.insert_buktipesan()
         elif pilih == 2 :
-            pes.update_tiket()
-        elif pilih == 3 :
-            pes.delete_tiket()
-        elif pilih == 4 :
-            pes.read_tiket()
+            Bp.read_buktipesan()
         else :
             print("=== Pilihan tidak tersedia ===")
             print("=== Kembali ke menu utama ===")

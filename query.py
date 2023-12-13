@@ -19,12 +19,13 @@ class Film:
         Penulis = str(input("Masukan Penulis Film\t: "))
         Produksi = str(input("Masukan Produksi Film\t: "))
         Casts = str(input("Masukan Casts Film\t: "))
-
-        query = """INSERT INTO film(Judul, Jenis, Produser, Sutradara, Penulis, Produksi, Casts) VALUES (%s, %s, %s, %s, %s, %s,%s)"""
-        data = (Judul,Jenis, Produser,Sutradara,Penulis,Produksi,Casts)
-        self.db.insertValue(query,data)
-        print("=== Anda Berhasil Menambahkan Data Film ===")
-
+        if Judul and Jenis and Produser and Sutradara and Penulis and Produksi and Casts :
+            query = """INSERT INTO film(Judul, Jenis, Produser, Sutradara, Penulis, Produksi, Casts) VALUES (%s, %s, %s, %s, %s, %s,%s)"""
+            data = (Judul,Jenis, Produser,Sutradara,Penulis,Produksi,Casts)
+            self.db.insertValue(query,data)
+            print("=== Anda Berhasil Menambahkan Data Film ===")
+        else :
+            print("=== Anda Gagal Menambahkan Data Film ===")
     def edit_film(self,result, Id_film) :
         Judul = result[0][1]
         Jenis = result[0][2]
@@ -465,7 +466,7 @@ class Pesan :
         id_tiket = self.get_tiket_informasi()
         query1 = """SELECT * FROM tiket WHERE Id_tiket = %s"""
         result = self.db.selectValue(query1, (id_tiket,))
-        Total_kursi = int(input("Masukan Total Memesan Kursi\t\t: "))
+        Total_kursi = int(input("Masukan Total Memesan Kursi\t: "))
         harga = result[0][5]
         stok = result[0][6]
         Total_harga = Total_kursi * harga
@@ -566,6 +567,7 @@ class Bukti_pesan:
         print("=== Input Kursi ===")
         pesan = self.get_infopesan()
         id_pesan = pesan[0][0]
+        total_kursi = pesan[0][3]
 
         tiket = self.get_infotiket(id_pesan)
         id_tiket = tiket[0][1]
@@ -576,24 +578,24 @@ class Bukti_pesan:
 
         judul = self.get_judulfilm(id_tiket)
         Id_pegawai = str(input("Masukan Id Pegawai\t\t: "))
+        for i in range(total_kursi) :
+            query = """INSERT INTO bukti_pesan(Id_pesan, Id_pegawai, Judul, Jam_tayang, Hari, Tanggal, Harga) VALUES (%s, %s, %s,%s,%s,%s,%s)"""
+            data = (id_pesan, Id_pegawai, judul,Jam_tayang,Hari,tanggal,harga)
+            self.db.insertValue(query,data)
+            i += 1
 
-        query = """INSERT INTO bukti_pesan(Id_pesan, Id_pegawai, Judul, Jam_tayang, Hari, Tanggal, Harga) VALUES (%s, %s, %s,%s,%s,%s,%s)"""
-        data = (id_pesan, Id_pegawai, judul,Jam_tayang,Hari,tanggal,harga)
+    # def update_buktipesan(self):
+    #     print("=== Update Kursi ===")
+    #     Id_kursi = int(input("Masukkan ID Kursi yang akan diupdate: "))
 
-        self.db.insertValue(query,data)
+    #     Nomor_kursi = str(input("Masukan Nomor Kursi\t\t: "))
+    #     Jenis_kursi = str(input("Masukan Jenis Kursi\t\t: "))
+    #     Id_Ruangan = str(input("Masukan ID Ruangan\t\t: "))
 
-    def update_buktipesan(self):
-        print("=== Update Kursi ===")
-        Id_kursi = int(input("Masukkan ID Kursi yang akan diupdate: "))
+    #     query = """UPDATE kursi SET `Nomor_kursi`= %s, `Jenis_kursi`= %s, `Id_Ruangan`= %s WHERE `Id_kursi` = %s"""
+    #     data = (Nomor_kursi, Jenis_kursi, Id_Ruangan, Id_kursi)
 
-        Nomor_kursi = str(input("Masukan Nomor Kursi\t\t: "))
-        Jenis_kursi = str(input("Masukan Jenis Kursi\t\t: "))
-        Id_Ruangan = str(input("Masukan ID Ruangan\t\t: "))
-
-        query = """UPDATE kursi SET `Nomor_kursi`= %s, `Jenis_kursi`= %s, `Id_Ruangan`= %s WHERE `Id_kursi` = %s"""
-        data = (Nomor_kursi, Jenis_kursi, Id_Ruangan, Id_kursi)
-
-        self.db.insertValue(query,data)
+    #     self.db.insertValue(query,data)
 
     def delete_buktipesan(self):
         print("=== Delete Kursi ===")
@@ -624,4 +626,9 @@ class Bukti_pesan:
 
             else :
                 print("Pilihan tidak tersedia")
-      
+
+            lihat = int(input("Apa ingin melihat data lagi (y/n)? "))
+            if lihat.lower() == 'y' :
+                continue
+            else :
+                break
