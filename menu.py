@@ -1,7 +1,7 @@
 import os
 from connector import database
 from createtable import created_table
-from query import Film, Penonton, Pegawai, Pesan, Kursi, Tiket
+from query import Film, Penonton, Pegawai, Pesan, Tiket
 db = database()
 db.connect()
 created_table(db)
@@ -140,7 +140,7 @@ while True :
             else :
                 print("=== Pilihan tidak tersedia ===")
                 print("=== Kembali ke menu utama ===")
-            os.system('pause')
+        os.system('pause')
 
     elif pilih == 6 :
         print("\n\t===== Menu Tiket =====")
