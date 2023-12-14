@@ -2,8 +2,6 @@ import os
 from connector import database
 from createtable import created_table
 from query import Film, Penonton, Pegawai, Pesan, Tiket, Bukti_pesan
-from sampledata import created_data
-
 db = database()
 db.connect()
 created_table(db)
@@ -12,7 +10,6 @@ pen = Penonton(db)
 pgw = Pegawai(db)
 tik = Tiket(db)
 pes = Pesan(db)
-Bp = Bukti_pesan(db)
 
 
 while True :
@@ -29,15 +26,15 @@ while True :
     pilih = int(input("Pilih Menu : "))
     if pilih == 1 :
         print("\n\t===== Menu Penonton =====")
-        print("\t===[1] Kelola Akun ==")
-        print("\t===[2] Lihat Film ==")
-        print("\t===[3] Pesan ==")
-        print("\t======================")
+        print("\t===[1] Kelola Akun     ==")
+        print("\t===[2] Lihat Film      ==")
+        print("\t===[3] Pesan           ==")
+        print("\t=========================")
 
         pilih = int(input("Pilih Menu : "))
         if pilih == 1 :
             print("\n\t===== Menu Penonton =====")
-            print("\t===== Kelola Akun =====")
+            print("\t====== Kelola Akun ======")
             print("\t===[1] Insert Penonton ==")
             print("\t===[2] Update Penonton ==")
             print("\t===[3] Delete Penonton ==")
@@ -49,7 +46,9 @@ while True :
                 pen.update_penonton()
             elif pilih == 3 :
                 pen.delete_penonton()
-            
+            elif pilih == 4 :
+                pen.read_penonton()
+                print("=== Anda Berhasil Menampilkan Data Penonton ===")
             else :
                 print("=== Pilihan tidak tersedia ===")
                 print("=== Kembali ke menu utama ===")
@@ -60,19 +59,19 @@ while True :
 
         elif pilih == 3 :
             print("\n\t===== Menu Penonton =====")
-            print("\t===== Pesan Tiket Bioskop =====")
-            print("\t===[1] Daftar Tiket ==")
-            print("\t===[2] Beli Tiket   ==")
-            print("\t======================")
+            print("\t== Pesan Tiket Bioskop ==")
+            print("\t===[1] Daftar Tiket    ==")
+            print("\t===[2] Beli Tiket      ==")
+            print("\t=========================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
                 tik.read_tiket()
             elif pilih == 2 :
-                print("\n\t===== Pesan Tiket Bioskop =====")
-                print("\t===== Beli Tiket =====") #class pesan
-                print("\t===[1] Pesan Tiket  ==")
-                print("\t===[2] Edit Tiket   ==")
-                print("\t=====================")
+                print("\n\t== Pesan Tiket Bioskop ==")
+                print("\t====== Beli  Tiket ======") #class pesan
+                print("\t===[1] Pesan Tiket     ==")
+                print("\t===[2] Edit Tiket      ==")
+                print("\t=========================")
                 pilih = int(input("Pilih Menu : "))
                 if pilih == 1 :
                     pes.insert_pesan()
@@ -83,21 +82,21 @@ while True :
                     print("=== Kembali ke menu utama ===")
 
     elif pilih == 2 :
-        print("\n\t===== Menu Pegawai =====")
-        print("\t===[1] Kelola Akun   ===") #done
-        print("\t===[2] Film\t     ===") #done
-        print("\t===[3] Tiket\t     ===") #done
-        print("\t===[4] Cetak Struck  ===") #progres
-        print("\t========================")
+        print("\n\t===== Menu  Pegawai =====")
+        print("\t===[1] Kelola Akun    ===") #done
+        print("\t===[2] Film           ===") #done
+        print("\t===[3] Tiket          ===") #done
+        print("\t===[4] Cetak Struck   ===") #progres
+        print("\t=========================")
         pilih = int(input("Pilih Menu : "))
         if pilih == 1 :
             print("\n\t===== Menu Pegawai =====")
-            print("\t===== Kelola Akun =====")
+            print("\t===== Kelola  Akun =====")
             print("\t===[1] Insert Pegawai ==")
             print("\t===[2] Update Pegawai ==")
             print("\t===[3] Delete Pegawai ==")
             print("\t===[4] Read Pegawai   ==")
-            print("\t===[5] Read Penonton   ==")
+            print("\t===[5] Read Penonton  ==")
             print("\t========================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
@@ -117,13 +116,13 @@ while True :
                 print("=== Kembali ke menu utama ===")
    
         elif pilih == 2 :
-            print("\n\t==== Menu Pegawai =====")
-            print("\t===== Kelola Film =====")
-            print("\t===[1] Insert Film   ==")
-            print("\t===[2] Update Film   ==")
-            print("\t===[3] Delete Film   ==")
-            print("\t===[4] Read Film     ==")
-            print("\t=======================")
+            print("\n\t===== Menu Pegawai =====")
+            print("\t===== Kelola  Film =====")
+            print("\t===[1] Insert Film    ==")
+            print("\t===[2] Update Film    ==")
+            print("\t===[3] Delete Film    ==")
+            print("\t===[4] Read Film      ==")
+            print("\t========================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
                 f.insert_film()
@@ -141,10 +140,10 @@ while True :
         elif pilih == 3 :
             print("\n\t===== Menu Pegawai =====")
             print("\t===== Kelola Tiket =====")
-            print("\t===[1] Insert Tiket  ===")
-            print("\t===[2] Update Tiket  ===")
-            print("\t===[3] Delete Tiket  ===")
-            print("\t===[4] Read Tiket    ===")
+            print("\t===[1] Insert Tiket   ==")
+            print("\t===[2] Update Tiket   ==")
+            print("\t===[3] Delete Tiket   ==")
+            print("\t===[4] Read Tiket     ==")
             print("\t========================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
@@ -163,15 +162,13 @@ while True :
             print("\n\t===== Menu Struck =====")
             print("\t===[1] Insert Struck ==")
             print("\t===[2] Read Struck   ==")
-            print("\t===[3] Delete Struck   ==")
             print("\t=======================")
             pilih = int(input("Pilih Menu : "))
+            Bp = Bukti_pesan(db)
             if pilih == 1 :
                 Bp.insert_buktipesan()
             elif pilih == 2 :
                 Bp.read_buktipesan()
-            elif pilih == 3 :
-                Bp.delete_buktipesan()
             else :
                 print("=== Pilihan tidak tersedia ===")
                 print("=== Kembali ke menu utama ===")
@@ -179,12 +176,9 @@ while True :
             print("=== Pilihan tidak tersedia ===")
             print("=== Kembali ke menu utama ===")
         
-    elif pilih == 99 :
-        created_data(db)
-        
     elif pilih == 0 :
         print("\t=== Terimakasih ===")
-        print("=== Jangan Lupa Datang Kembali ===")
+        print("=== Jangan Lupa Datang Kembali ===\n")
         break
 
     else :

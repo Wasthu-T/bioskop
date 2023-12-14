@@ -115,7 +115,7 @@ class Penonton :
         run = True
         while run :
             try:
-                Email = str(input("Masukan Email\t: "))
+                Email = str(input("Masukan Email\t\t: "))
                 validate_email(Email)
                 return Email
             except EmailNotValidError as e:
@@ -136,7 +136,6 @@ class Penonton :
 
 
     def edit_penonton(self, result, Id_penonton) :
-        # get data dari parameter result
         Nama = result[0][1]
         Email = result[0][2]
         Nomor = result[0][3]
@@ -173,7 +172,6 @@ class Penonton :
         query = """SELECT * FROM penonton WHERE Id_penonton = %s"""
         data = (Id_penonton,)
         self.db.selectValuepretty(query, data)
-        # result menggunakan fetchall
         result = self.db.selectValue(query, data)
 
         test = str(input("Apa data ingin diupdate (y/n)? "))
@@ -211,10 +209,10 @@ class Pegawai :
 
     def jenis_kelamin(self) :
         while True :
-            print("=== Jenis Kelamin ===")
+            print("\n=== Jenis Kelamin ===")
             print("1. Laki-laki")
             print("2. Perempuan")
-            pilih = int(input("Pilih Jenis Kelamin\t:"))
+            pilih = int(input("Pilih Jenis Kelamin\t: "))
             if pilih == 1 :
                 return "Laki-laki"
             elif pilih == 2 :
@@ -242,9 +240,9 @@ class Pegawai :
 
     def insert_pegawai(self):
         print("=== Input Pegawai ===")
-        Nama = str(input("Masukan Nama\t\t: "))
+        Nama = str(input("Masukan Nama\t: "))
         Email = self.check_email()
-        Nomor = "0" + str(int(input("Masukan Nomor\t\t: ")))
+        Nomor = "0" + str(int(input("Masukan Nomor\t: ")))
 
         Jenis_kelamin = self.jenis_kelamin()
         Usia = self.umur()
@@ -275,14 +273,14 @@ class Pegawai :
             print("4. Usia")
             pilih = int(input("Data yang ingin diubah : "))
             if pilih == 1 :
-                Nama = str(input("Masukan Nama\t\t: "))
+                Nama = str(input("Masukan Nama\t: "))
             elif pilih == 2 :
                 Email = self.check_email()
             elif pilih == 3 :
-                Nomor = "0" + str(int(input("Masukan Nomor\t\t: ")))
+                Nomor = "0" + str(int(input("Masukan Nomor\t: ")))
             elif pilih == 4 :
                 Usia = self.umur()
-                if Usia <= result[0][4] :
+                if int(Usia) <= int(result[0][4]) :
                     print("Usia kamu turun?")
                     Usia = result[0][4]
                 if Usia is None :
@@ -447,7 +445,7 @@ class Tiket :
         self.db.selectValuepretty(query, data=None)
         print("=== Anda Berhasil Menampilkan Data Tiket ===")
 
-# tabel pesan done
+# tabel pesan 90%
 class Pesan :
     def __init__(self, db):
         self.db = db
@@ -479,7 +477,6 @@ class Pesan :
         data2 = (sisa_stok_kursi, id_tiket)
         self.db.insertValue(update_stok,data2)
         print("=== Anda Berhasil Memesan Tiket ===")
-        
     def edit_pesan(self, result, id_pesan) :
         id_tiket = result[0][1]
         id_penonton = result[0][2]
@@ -551,6 +548,7 @@ class Bukti_pesan:
     def get_infopesan(self) :
         query = """SELECT * FROM pesan WHERE Id_pesan=%s"""
         data = int(input("Masukan Id Pesan Anda\t\t: "))
+        self.db.selectValuepretty(query, (data,)) 
         result = self.db.selectValue(query, (data,)) 
         return result
     
@@ -565,7 +563,7 @@ class Bukti_pesan:
         return result[0][1]
     
     def insert_buktipesan(self):
-        print("=== Input Kursi ===")
+        print("=== Struck ===")
         pesan = self.get_infopesan()
         id_pesan = pesan[0][0]
         id_tik = pesan[0][1]
@@ -597,9 +595,10 @@ class Bukti_pesan:
 
     def read_buktipesan(self):
         while True :
-            print("=== Read Bukti Pesan ===")
-            print("=== 1. Lihat semua buktipesan ===")
-            print("=== 2. Lihat bedasarkan Id_pesan")
+            print("========= Read Bukti Pesan =========")
+            print("=== 1. Lihat semua buktipesan    ===")
+            print("=== 2. Lihat bedasarkan Id_pesan ===")
+            print("====================================")
             pilih = int(input("Pilih Menu : "))
             if pilih == 1 :
                 query = """SELECT * FROM bukti_pesan"""
